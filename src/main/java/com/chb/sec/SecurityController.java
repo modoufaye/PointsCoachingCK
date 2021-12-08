@@ -14,16 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class SecurityController extends HttpServlet {
 
-    @GetMapping(value = "/login")
-    public String login(){
-        return "login";
-    }
-
-    @GetMapping(value = "logout")
-    public String logout(){
-        return "redirect:/login";
-    }
-
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(HttpServletRequest request){
         if(request.isUserInRole("SUPERADMIN"))
@@ -32,6 +22,17 @@ public class SecurityController extends HttpServlet {
             return "redirect:/listClientsDuCoach";
         else
             return "403";
+    }
+
+
+    @GetMapping(value = "/login")
+    public String login(){
+        return "login";
+    }
+
+    @GetMapping(value = "logout")
+    public String logout(){
+        return "redirect:/login";
     }
 
     @GetMapping(value = "/403")
