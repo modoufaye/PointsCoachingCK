@@ -10,11 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 import java.util.Date;
 
 @SpringBootApplication
-public class PointcoachingApplication implements CommandLineRunner {
+public class PointcoachingApplication extends SpringBootServletInitializer implements CommandLineRunner{
     @Autowired
     private ClientRepository clientRepository;
     @Autowired
