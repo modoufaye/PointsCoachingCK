@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin().loginPage("/login");
         http.authorizeRequests().anyRequest().authenticated();
 //        la page de destination après une connexion réussie
-//        http.formLogin().defaultSuccessUrl("/", true);
+        http.formLogin().defaultSuccessUrl("/", true);
 //        la page de destination après une connexion infructueuse
         http.formLogin().failureUrl("/login?error=true");
         // Toutes les requetes necessitent de passer par une authentification
