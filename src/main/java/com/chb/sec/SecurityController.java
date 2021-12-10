@@ -23,6 +23,15 @@ public class SecurityController extends HttpServlet {
         else
             return "403";
     }
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String home1(HttpServletRequest request){
+        if(request.isUserInRole("SUPERADMIN"))
+            return "redirect:/tabClient";
+        else if(request.isUserInRole("USER"))
+            return "redirect:/listClientsDuCoach";
+        else
+            return "403";
+    }
 
 
     @GetMapping(value = "/login")
