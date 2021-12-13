@@ -131,8 +131,9 @@ public class PointController extends HttpServlet{
     }
     // ************************** Formulaire d'ajout pour les points ***************************************
     @RequestMapping(value = "/ajoutPoint", method = RequestMethod.GET)
-    public String formPoint(Model model) {
-        model.addAttribute("point", new Point());
+    public String formPoint(Model model){
+        Point p = new Point();
+        model.addAttribute("point", p);
         return "profilClient";
     }
     @RequestMapping(value = "/savePoint", method = RequestMethod.POST)
@@ -144,20 +145,18 @@ public class PointController extends HttpServlet{
         point.setClient(client);
         point.setSemaine(i);
 //        point.getResumeRdv().setNoteResumeRdv("Pas encore");
-        pointRepository.save(point);
-        Point p = point;
-        Client client1 = client;
-        client.setPoidsActuel(client.getPoidsActuel()-point.getPoidsPerdus());
+        Point p = pointRepository.save(point);
+        Long codeClient = p.getClient().getCodeClient();
+        Client clientUpdate = clientRepository.findClientByCodeClient(codeClient);
+        clientUpdate.setPoidsActuel(clientUpdate.getPoidsActuel()-p.getPoidsPerdus());
+        clientRepository.save(clientUpdate);
         return "redirect:/listClientsDuCoach";
     }
     // Mise à jour d'un point
     @RequestMapping(value = "/editPoint", method = RequestMethod.GET)
     public String editPoint(Model model, Long codePoint) {
-        System.out.println("*a*a*a*a*a*a*a*a*a*a*   "+codePoint+" xxereexxexexexexexexRxexxxx");
         Point p = pointRepository.consulterPointCode(codePoint);
         model.addAttribute("point", p);
-        System.out.println("*a*a*a*a*a*a*a*a*a*a*  yyyeyyyeyeyyyeyeye");
-
         return "profilClient";
     }
     @RequestMapping(value = "/updatePoint", method = RequestMethod.POST)
@@ -170,7 +169,6 @@ public class PointController extends HttpServlet{
         pointRepository.save(point);
         Point p = point;
         Client client1 = client;
-        System.out.println("***********   "+point.getClient().getPrenomClient()+"   cccccccccccccccccccc");
         client.setPoidsActuel(client.getPoidsActuel()-point.getPoidsPerdus());
         return "redirect:/listClientsDuCoach";
     }
