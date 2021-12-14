@@ -31,11 +31,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        //        la page de connexion personnalisée
+        http.formLogin().loginPage("/login");
+        http.csrf().disable();
         http.authorizeRequests().antMatchers("/ajoutClient","/editClient","/saveClient","/updateClient","/deleteClient","/logout","/listClientsDuCoach","/login","/").permitAll();
         http.authorizeRequests().antMatchers("/tabClient").hasRole("SUPERADMIN");
         http.exceptionHandling().accessDeniedPage("/403");
-//        la page de connexion personnalisée
-        http.formLogin().loginPage("/login");
         http.authorizeRequests().anyRequest().authenticated();
 //        la page de destination après une connexion réussie
         http.formLogin().defaultSuccessUrl("/", true);

@@ -249,8 +249,8 @@
                                     <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                                         <thead>
                                         <tr>
-                                            <th>Poids perdus</th>
                                             <th>Semaine</th>
+                                            <th>Poids perdus</th>
                                             <th>Routine alimentaire</th>
                                             <th>Hydratation</th>
                                             <th>MindfulEating</th>
@@ -259,13 +259,13 @@
                                             <th>Stress</th>
                                             <th>Poids actuels</th>
                                             <th>Date point</th>
-                                            <th class="text-right">Actions</th>
+<!--                                            <th class="text-right">Actions</th>-->
                                         </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
-                                                <th>Poids perdus</th>
                                                 <th>Semaine</th>
+                                                <th>Poids perdus</th>
                                                 <th>Routine alimentaire</th>
                                                 <th>Hydratation</th>
                                                 <th>MindfulEating</th>
@@ -274,13 +274,13 @@
                                                 <th>Stress</th>
                                                 <th>Poids actuels</th>
                                                 <th>Date point</th>
-                                                <th class="text-right">Actions</th>
+<!--                                                <th class="text-right">Actions</th>-->
                                             </tr>
                                         </tfoot>
                                         <tbody>
                                         <tr th:each="p:${listPoint}">
-                                            <th th:text="${p.poidsPerdus}"></th>
                                             <th th:text="${p.semaine}"></th>
+                                            <th th:text="${p.poidsPerdus}"></th>
                                             <th th:text="${p.routineAlimentaire}"></th>
                                             <th th:text="${p.hydratation}"></th>
                                             <th th:text="${p.mindfulEating}"></th>
@@ -289,10 +289,10 @@
                                             <th th:text="${p.stress}"></th>
                                             <th th:text="${p.getClient().poidsActuel}"></th>
                                             <th th:text="${p.datePoint}"></th>
-                                            <td class="text-right&">
+                                            <!--<td class="text-right&">
                                                 <a class="btn btn-link btn-warning btn-just-icon edit" data-toggle="modal" data-target="#modalResume" sec:authorize="hasRole('ROLE_USER')" th:href="@{'/editPoint?codePoint='+${p.codePoint}}"  ><i class="material-icons">dvr</i></a>
                                                 <a class="btn btn-link btn-warning btn-just-icon edit" data-toggle="modal" data-target="#deletmodal" sec:authorize="hasRole('ROLE_USER')" th:href="@{'/deletePoint?codePoint='+${p.codePoint}}"  ><i class="fas fa-trash-alt"></i></a>
-                                            </td>
+                                            </td>-->
                                         </tr>
                                         </tbody>
                                     </table>

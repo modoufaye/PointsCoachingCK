@@ -1,5 +1,7 @@
 package com.chb.entities;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -25,6 +27,7 @@ public class Point implements Serializable {
     @JoinColumn(name = "CODE_COACH")
     private Coach coach;
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "CODE_CLI")
     private Client client;
     @ManyToOne

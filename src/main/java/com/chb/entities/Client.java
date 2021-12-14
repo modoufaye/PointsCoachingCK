@@ -36,7 +36,7 @@ public class Client implements Serializable {
     @ManyToOne
     @JoinColumn(name = "CODE_FORM")
     private Formule formule;
-    @OneToMany(mappedBy = "client",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "client",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private Collection<Point> points;
 
     public Client() {
@@ -47,7 +47,7 @@ public class Client implements Serializable {
             String antMedicaux, Coach coach, Formule formule) {
         super();
         this.prenomClient = prenomClient;
-        this.nomClient = nomClient;
+        this.nomClient = nomClient; 
         this.ageClient = ageClient;
         this.poidsClient = poidsClient;
         this.poidsActuel = poidsClient;
