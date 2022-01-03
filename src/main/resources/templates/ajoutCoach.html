@@ -156,13 +156,13 @@
                                     <span style="color: black">Mon compte</span>
                                 </a>
 
-                                <a class="dropdown-item" th:href="@{/logout}"
+                                <a class="dropdown-item" th:href="@{login}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     <span style="color: black">Déconnexion</span>
                                 </a>
 
-                                <form id="logout-form" action="http://logout" method="POST" style="display: none;">
+                                <form id="logout-form" th:action="@{login}" method="POST" style="display: none;">
                                     <input type="hidden" name="_token" value="pN3Lzdlcy0IfVu672Q7zb5Kks0IPUDZAvkHpkaiY">                                    </form>
                             </div>
                             <!-- dropdown end -->

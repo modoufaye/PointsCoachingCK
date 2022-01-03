@@ -190,13 +190,13 @@
                                     <span style="color: black">Mon compte</span>
                                 </a>
 
-                                <a class="dropdown-item" th:href="@{/logout}"
+                                <a class="dropdown-item" th:href="@{login}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     <span style="color: black">Déconnexion</span>
                                 </a>
 
-                                <form id="logout-form" action="http://logout" method="POST" style="display: none;">
+                                <form id="logout-form" th:action="@{login}" method="POST" style="display: none;">
                                     <input type="hidden" name="_token" value="pN3Lzdlcy0IfVu672Q7zb5Kks0IPUDZAvkHpkaiY">                                    </form>
                             </div>
                             <!-- dropdown end -->
@@ -257,7 +257,6 @@
                                             <th>Sport</th>
                                             <th>Sommeil</th>
                                             <th>Stress</th>
-                                            <th>Poids actuels</th>
                                             <th>Date point</th>
 <!--                                            <th class="text-right">Actions</th>-->
                                         </tr>
@@ -272,7 +271,6 @@
                                                 <th>Sport</th>
                                                 <th>Sommeil</th>
                                                 <th>Stress</th>
-                                                <th>Poids actuels</th>
                                                 <th>Date point</th>
 <!--                                                <th class="text-right">Actions</th>-->
                                             </tr>
@@ -287,7 +285,6 @@
                                             <th th:text="${p.sport}"></th>
                                             <th th:text="${p.sommeil}"></th>
                                             <th th:text="${p.stress}"></th>
-                                            <th th:text="${p.getClient().poidsActuel}"></th>
                                             <th th:text="${p.datePoint}"></th>
                                             <!--<td class="text-right&">
                                                 <a class="btn btn-link btn-warning btn-just-icon edit" data-toggle="modal" data-target="#modalResume" sec:authorize="hasRole('ROLE_USER')" th:href="@{'/editPoint?codePoint='+${p.codePoint}}"  ><i class="material-icons">dvr</i></a>

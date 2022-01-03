@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Liste clientes par coach</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -176,13 +177,13 @@
                                     <span style="color: black">Mon compte</span>
                                 </a>
 
-                                <a class="dropdown-item" th:href="@{/logout}"
+                                <a class="dropdown-item" th:href="@{login}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     <span style="color: black">Déconnexion</span>
                                 </a>
 
-                                <form id="logout-form" th:action="@{/logout}" method="POST" style="display: none;">
+                                <form id="logout-form" th:action="@{login}" method="POST" style="display: none;">
                                     <input type="hidden" name="_token" value="pN3Lzdlcy0IfVu672Q7zb5Kks0IPUDZAvkHpkaiY">                                    </form>
                             </div>
                             <!-- dropdown end -->

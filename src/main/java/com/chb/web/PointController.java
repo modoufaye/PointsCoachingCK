@@ -30,16 +30,6 @@ public class PointController extends HttpServlet{
     @Autowired
     private IPointMetier pointMetier;
 
-    @RequestMapping(value = "/")
-    public String home(HttpServletRequest request){
-        if(request.isUserInRole("SUPERADMIN"))
-            return "redirect:/tabClient";
-        else if(request.isUserInRole("USER"))
-            return "redirect:/listClientsDuCoach";
-        else
-            return "redirect:/login";
-    }
-
     @GetMapping(value = "/tabClient")
     public String index2(Model model) {
         try {
@@ -157,6 +147,7 @@ public class PointController extends HttpServlet{
 //        point.getResumeRdv().setNoteResumeRdv("Pas encore");
         Point p = pointRepository.save(point);
         Long codeClient = p.getClient().getCodeClient();
+        System.out.println("**a*a*a**a**a**a**a"+codeClient+"**b**b**b**b**b**b**b*");
         Client clientUpdate = clientRepository.findClientByCodeClient(codeClient);
         clientUpdate.setPoidsActuel(clientUpdate.getPoidsActuel()-p.getPoidsPerdus());
         clientRepository.save(clientUpdate);

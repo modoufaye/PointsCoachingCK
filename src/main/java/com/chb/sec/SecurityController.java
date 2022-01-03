@@ -14,6 +14,16 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class SecurityController extends HttpServlet {
 
+    @RequestMapping(value = "/")
+    public String home(HttpServletRequest request){
+        if(request.isUserInRole("SUPERADMIN"))
+            return "redirect:/tabClient";
+        else if(request.isUserInRole("USER"))
+            return "redirect:/listClientsDuCoach";
+        else
+            return "redirect:/login";
+    }
+
     @GetMapping(value = "/login")
     public String login(){
         return "login";
