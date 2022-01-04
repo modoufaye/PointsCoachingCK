@@ -66,12 +66,14 @@ public class PointController extends HttpServlet{
 
     @RequestMapping(value = "/saveClient", method = RequestMethod.POST)
     public String save(@Validated Client client, BindingResult bindingResult) {
+        Date date = new Date();
         Coach coach = new Coach();
         Formule formule;
         if(bindingResult.hasErrors()){
             return "ajoutClient";
         }
         client.setPoidsActuel(client.getPoidsClient());
+        client.setDataClient(date);
         clientRepository.save(client);
         client.setCoach(coach);
             if(client.getFormule().getCodeFormule() == 1){
@@ -125,7 +127,6 @@ public class PointController extends HttpServlet{
                 List<Client> pageClients = pointMetier.listClientDuCoach(username);
                 model.addAttribute("listClients", pageClients);
                 return "listClientsDuCoach";
-
         } else
             return "403";
     }

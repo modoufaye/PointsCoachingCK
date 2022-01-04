@@ -1,12 +1,15 @@
 package com.chb.entities;
 import com.sun.istack.NotNull;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 
 @Entity
 public class Client implements Serializable {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codeClient;
     @Column(length = 25)
     @NotNull
@@ -25,6 +28,8 @@ public class Client implements Serializable {
     private String emailClient;
     private String numClient;
     private String adresse;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date dataClient;
     private String antFamilliaux;
     private String antMedicaux;
     private double poidsActuel;
@@ -205,4 +210,13 @@ public class Client implements Serializable {
     public void setPrenomClient(String prenomClient) {
         this.prenomClient = prenomClient;
     }
+
+    public Date getDataClient() {
+        return dataClient;
+    }
+
+    public void setDataClient(Date dataClient) {
+        this.dataClient = dataClient;
+    }
+
 }

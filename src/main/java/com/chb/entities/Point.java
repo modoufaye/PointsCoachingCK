@@ -10,7 +10,7 @@ import java.util.Date;
 
 @Entity
 public class Point implements Serializable {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codePoint;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date datePoint;

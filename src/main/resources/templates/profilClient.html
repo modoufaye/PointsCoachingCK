@@ -129,8 +129,8 @@
                                     <span class="sidebar-normal"> LISTER </span>
                                 </a>
                             </li>
-                            <li class="nav-item" sec:authorize="hasRole('ROLE_SUPERADMIN')">
-                                <a class="nav-link" th:href="@{/ajoutCoach}">
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/ajoutCoach}" sec:authorize="hasRole('ROLE_SUPERADMIN')">
                                     <span class="sidebar-mini"> N </span>
                                     <span class="sidebar-normal"> NOUVEAU </span>
                                 </a>
