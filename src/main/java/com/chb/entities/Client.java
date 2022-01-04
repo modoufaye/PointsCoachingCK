@@ -29,7 +29,7 @@ public class Client implements Serializable {
     private String numClient;
     private String adresse;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dataClient;
+    private Date dateClient;
     private String antFamilliaux;
     private String antMedicaux;
     private double poidsActuel;
@@ -48,7 +48,7 @@ public class Client implements Serializable {
         super();
     }
 
-    public Client(String prenomClient, String nomClient, int ageClient, double poidsClient, double objectif, double taille, String sexe, String emailClient, String numClient, String adresse, String antFamilliaux,
+    public Client(Date dateClient,String prenomClient, String nomClient, int ageClient, double poidsClient, double objectif, double taille, String sexe, String emailClient, String numClient, String adresse, String antFamilliaux,
             String antMedicaux, Coach coach, Formule formule) {
         super();
         this.prenomClient = prenomClient;
@@ -62,6 +62,7 @@ public class Client implements Serializable {
         this.emailClient = emailClient;
         this.numClient = numClient;
         this.adresse = adresse;
+        this.dateClient = dateClient;
         this.antFamilliaux = antFamilliaux;
         this.antMedicaux = antMedicaux;
         this.coach = coach;
@@ -211,12 +212,12 @@ public class Client implements Serializable {
         this.prenomClient = prenomClient;
     }
 
-    public Date getDataClient() {
-        return dataClient;
+    public Date getDateClient() {
+        return dateClient;
     }
 
-    public void setDataClient(Date dataClient) {
-        this.dataClient = dataClient;
+    public void setDateClient(Date dateClient) {
+        this.dateClient = dateClient;
     }
 
 }

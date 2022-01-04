@@ -73,7 +73,7 @@ public class PointController extends HttpServlet{
             return "ajoutClient";
         }
         client.setPoidsActuel(client.getPoidsClient());
-        client.setDataClient(date);
+        client.setDateClient(date);
         clientRepository.save(client);
         client.setCoach(coach);
             if(client.getFormule().getCodeFormule() == 1){
