@@ -177,9 +177,10 @@ public class PointController extends HttpServlet{
     @RequestMapping("/listPoint")
     public String tabPoints(Model model, HttpServletRequest request) {
         String username = request.getUserPrincipal().getName();
+        System.out.println("vvvvvvvvvvvvvvvv"+username+"vvvvvvvvvvvvvvvvvvvvvvvv");
         List<Point> tabPoints = pointMetier.listPoints(username);
         model.addAttribute("listPoint", tabPoints);
-        return "listPoint";
+        return "redirect:/listPoint";
     }
 
     @RequestMapping(value = "/deletePoint")
