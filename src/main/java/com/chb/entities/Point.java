@@ -10,7 +10,7 @@ import java.util.Date;
 
 @Entity
 public class Point implements Serializable {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long codePoint;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date datePoint;
@@ -18,11 +18,16 @@ public class Point implements Serializable {
     private int semaine;
     private Boolean routineAlimentaire;
     private Boolean mindfulEating;
+    private Boolean mindfulEatingAffecte;
     private Boolean hydratation;
+    private Boolean hydratationAffecte;
     private Boolean sport;
-    private String infosSupplementaire;
+    private Boolean sportAffecte;
     private Boolean stress;
+    private Boolean stressAffecte;
     private Boolean sommeil;
+    private Boolean sommeilAffecte;
+    private String infosSupplementaire;
     @ManyToOne
     @JoinColumn(name = "CODE_COACH")
     private Coach coach;
@@ -166,4 +171,45 @@ public class Point implements Serializable {
     public void setFormule(Formule formule) {
         this.formule = formule;
     }
+
+
+    public Boolean getMindfulEatingAffecte() {
+        return mindfulEatingAffecte;
+    }
+
+    public void setMindfulEatingAffecte(Boolean mindfulEatingAffecte) {
+        this.mindfulEatingAffecte = mindfulEatingAffecte;
+    }
+    public Boolean getHydratationAffecte() {
+        return hydratationAffecte;
+    }
+
+    public void setHydratationAffecte(Boolean hydratationAffecte) {
+        this.hydratationAffecte = hydratationAffecte;
+    }
+
+    public Boolean getSportAffecte() {
+        return sportAffecte;
+    }
+
+    public void setSportAffecte(Boolean sportAffecte) {
+        this.sportAffecte = sportAffecte;
+    }
+
+    public Boolean getStressAffecte() {
+        return stressAffecte;
+    }
+
+    public void setStressAffecte(Boolean stressAffecte) {
+        this.stressAffecte = stressAffecte;
+    }
+
+    public Boolean getSommeilAffecte() {
+        return sommeilAffecte;
+    }
+
+    public void setSommeilAffecte(Boolean sommeilAffecte) {
+        this.sommeilAffecte = sommeilAffecte;
+    }
+
 }

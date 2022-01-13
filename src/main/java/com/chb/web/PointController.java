@@ -148,7 +148,6 @@ public class PointController extends HttpServlet{
 //        point.getResumeRdv().setNoteResumeRdv("Pas encore");
         Point p = pointRepository.save(point);
         Long codeClient = p.getClient().getCodeClient();
-        System.out.println("**a*a*a**a**a**a**a"+codeClient+"**b**b**b**b**b**b**b*");
         Client clientUpdate = clientRepository.findClientByCodeClient(codeClient);
         clientUpdate.setPoidsActuel(clientUpdate.getPoidsActuel()-p.getPoidsPerdus());
         clientRepository.save(clientUpdate);
