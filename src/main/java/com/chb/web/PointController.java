@@ -123,11 +123,16 @@ public class PointController extends HttpServlet{
     @GetMapping(value = "/listClientsDuCoach")
     public String clientCoach(Model model, HttpServletRequest request) {
         String username = request.getUserPrincipal().getName();
-        if(!(username.isEmpty())){
+        if(!(username.isEmpty()) && !(username.equalsIgnoreCase("codou")==true)){
                 List<Client> pageClients = pointMetier.listClientDuCoach(username);
                 model.addAttribute("listClients", pageClients);
                 return "listClientsDuCoach";
-        } else
+        }else if(request.isUserInRole("SUPERADMIN")){
+            List<Client> pageClients = clientRepository.findAll();
+            model.addAttribute("tabClient", pageClients);
+            return "tabClient";
+        }
+            else
             return "403";
     }
     // ************************** Formulaire d'ajout pour les points ***************************************
@@ -206,6 +211,7 @@ public class PointController extends HttpServlet{
         try {
             String username = request.getUserPrincipal().getName();
             Coach coach = coachRepository.consulterCoach(username);
+            System.out.println("cccccccccccccccccccccc"+coach.getPoints().size()+"cccccccccccccccccccccccccccccc");
             model.addAttribute("coach", coach);
             model.addAttribute("clB", pointMetier.ClienteFormule(1L,username));
             model.addAttribute("clS", pointMetier.ClienteFormule(2L,username));
