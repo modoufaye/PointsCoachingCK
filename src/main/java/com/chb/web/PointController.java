@@ -210,8 +210,10 @@ public class PointController extends HttpServlet{
     public String listCocach(Model model, HttpServletRequest request) {
         try {
             String username = request.getUserPrincipal().getName();
+            System.out.println("dddddd "+username+" dddddd");
+
             Coach coach = coachRepository.consulterCoach(username);
-            System.out.println("cccccccccccccccccccccc"+coach.getPoints().size()+"cccccccccccccccccccccccccccccc");
+            System.out.println("cccccccccccccccccccccc "+coach+" cccccccccccccccccccccccccccccc");
             model.addAttribute("coach", coach);
             model.addAttribute("clB", pointMetier.ClienteFormule(1L,username));
             model.addAttribute("clS", pointMetier.ClienteFormule(2L,username));

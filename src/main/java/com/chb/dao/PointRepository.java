@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface PointRepository extends JpaRepository<Point, Long> {
-    @Query("select p from Point p where p.coach.nomCoach=:x")
+    @Query("select p from Point p where lower(p.coach.nomCoach)=:x")
     public List<Point> listPoint(@Param("x")String username);
 
     @Query("select p from Point p where p.codePoint=:x")
