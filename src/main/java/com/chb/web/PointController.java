@@ -7,7 +7,6 @@ import com.chb.entities.*;
 import com.chb.metier.IPointMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -187,6 +187,13 @@ public class PointController extends HttpServlet{
         return "listPoint";
     }
 
+    @RequestMapping("/statistiquePoint")
+    public String statPoints(Model model, HttpServletRequest request) {
+        List<Point> tab = pointRepository.findAll();
+        model.addAttribute("statPoint", tab);
+        return "statistiquePoint";
+    }
+
     @RequestMapping(value = "/deletePoint")
     public String deletePt(Long codePoint){
        Point p = pointRepository.consulterPointCode(codePoint);
@@ -210,8 +217,6 @@ public class PointController extends HttpServlet{
     public String listCocach(Model model, HttpServletRequest request) {
         try {
             String username = request.getUserPrincipal().getName();
-            System.out.println("dddddd "+username+" dddddd");
-
             Coach coach = coachRepository.consulterCoach(username);
             System.out.println("cccccccccccccccccccccc "+coach+" cccccccccccccccccccccccccccccc");
             model.addAttribute("coach", coach);
@@ -223,14 +228,59 @@ public class PointController extends HttpServlet{
         }
         return "listCoach";
     }
-    // Liste des etudiant nen fonction d'une formule
+    @RequestMapping("/statistiqueCoach")
+    public String statCocach(Model model, HttpServletRequest request) {
+        try {
+            String username = request.getUserPrincipal().getName();
+            System.out.println("dddddd "+username+" dddddd");
+
+            List<Coach> listCoachs = coachRepository.findAll();
+            model.addAttribute("listCoachs", listCoachs);
+          /*  for (Coach c : listCoachs){
+                Collection<Client> listClients = c.getClients();
+                int nbrBasic = 0;
+                int nbrSilver = 0;
+                int nbrGold = 0;
+                for (Client cl : listClients){
+                    if(cl.getFormule().getCodeFormule()==1){
+                        nbrBasic++;
+                    }
+                    if(cl.getFormule().getCodeFormule()==2){
+                        nbrSilver++;
+                    }
+                    else{
+                        nbrBasic++;
+                    }
+                }
+                model.addAttribute("nbrBasic", nbrBasic);
+                model.addAttribute("nbrSilver", nbrSilver);
+                model.addAttribute("nbrGold", nbrGold);
+            }*/
+          /*  model.addAttribute("clB", pointMetier.findAllClFormCoach(1L));
+            model.addAttribute("clS", pointMetier.findAllClFormCoach(2L));
+            model.addAttribute("clG", pointMetier.findAllClFormCoach(3L));*/
+        } catch (Exception e) {
+            model.addAttribute("exception", e);
+        }
+        return "statistiqueCoach";
+    }
+
+    // Liste des etudiants Basic d'un coach
     @RequestMapping(value = "/listBasic")
     public String tabBasic(Model model, HttpServletRequest request) {
         String username = request.getUserPrincipal().getName();
-        List<Client> tabClient = pointMetier.findClFormCoach(1L, username);
-        model.addAttribute("listBas", tabClient);
-        return "listBasic";
+            List<Client> tabClient = pointMetier.findClFormCoach(1L, username);
+            model.addAttribute("listBas", tabClient);
+            return "listBasic";
     }
+    // Liste de tous les etudiants Basic
+    @RequestMapping(value = "/statistiqueBasic")
+    public String statBasic(Model model, HttpServletRequest request) {
+            List<Client> tabClient = pointMetier.findAllClForm(1L);
+            model.addAttribute("clientBas", tabClient);
+            return "statistiqueBasic";
+    }
+
     @RequestMapping(value = "/listSilver")
     public String tabSilver(Model model, HttpServletRequest request) {
         String username = request.getUserPrincipal().getName();
@@ -238,11 +288,23 @@ public class PointController extends HttpServlet{
         model.addAttribute("listSil", tabClient);
         return "listSilver";
     }
+    @RequestMapping(value = "/statistiqueSilver")
+    public String statSilver(Model model, HttpServletRequest request) {
+        List<Client> tabClient = pointMetier.findAllClForm(2L);
+        model.addAttribute("clientSil", tabClient);
+        return "statistiqueSilver";
+    }
     @RequestMapping(value = "/listGold")
     public String tabGold(Model model, HttpServletRequest request) {
         String username = request.getUserPrincipal().getName();
         List<Client> tabClient = pointMetier.findClFormCoach(3L, username);
         model.addAttribute("listGol", tabClient);
         return "listGold";
+    }
+    @RequestMapping(value = "/statistiqueGold")
+    public String statGold(Model model, HttpServletRequest request) {
+        List<Client> tabClient = pointMetier.findAllClForm(3L);
+        model.addAttribute("clientGol", tabClient);
+        return "statistiqueGold";
     }
 }

@@ -34,9 +34,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //        la page de connexion personnalisée
         http.formLogin().loginPage("/login");
         http.csrf().disable();
-        http.authorizeRequests().antMatchers("/src/main/resources/static/assets/js/**","/src/main/resources/static/assets/css/**").permitAll();
-        http.authorizeRequests().antMatchers("/ajoutClient","/editClient","/saveClient","/updateClient","/deleteClient","/logout","/listClientsDuCoach","/login","/").permitAll();
-        http.authorizeRequests().antMatchers("/tabClient").hasRole("SUPERADMIN");
+        http.authorizeRequests().antMatchers("/ajoutClient","/editClient","/saveClient","/updateClient","/logout","/login","/").permitAll();
+        http.authorizeRequests().antMatchers("/tabClient","/statistiqueBasic","/statistiqueSilver","/statistiqueGold").hasRole("SUPERADMIN");
+        http.authorizeRequests().antMatchers("/listBasic","/listSilver","/listGold","/listClientsDuCoach","/deleteClient").hasRole("USER");
         http.exceptionHandling().accessDeniedPage("/403");
         http.authorizeRequests().anyRequest().authenticated();
 //        la page de destination après une connexion réussie

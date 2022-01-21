@@ -3,7 +3,7 @@
                 xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
-    <title>Tableau clientes</title>
+    <title>Liste clientes Basic</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" type="text/css"
@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link href="../../assets/css/material-dashboard.css?v=2.0.2" rel="stylesheet"/>
+    <style>
+        .bas{
+            margin-top: 185px;
+        }
+    </style>
 </head>
 <body class="">
 <div class="wrapper">
@@ -32,6 +37,7 @@
                         <p> Accueil </p>
                     </a>
                 </li>
+
                 <li class="nav-item ">
                     <a class="nav-link" data-toggle="collapse" href="#client">
                         <i class="fas fa-user"></i>
@@ -65,7 +71,6 @@
                         </ul>
                     </div>
                 </li>
-
                 <li class="nav-item ">
                     <a class="nav-link" data-toggle="collapse" href="#formule">
                         <i class="fas fa-shopping-cart"></i>
@@ -94,7 +99,6 @@
                         </ul>
                     </div>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="collapse" href="#coach">
                         <i class="fas fa-user-tie"></i>
@@ -102,26 +106,27 @@
                     </a>
                     <div class="collapse" id="coach">
                         <ul class="nav">
-                            <li class="nav-item" sec:authorize="hasRole('ROLE_SUPERADMIN')">
-                                <a class="nav-link" th:href="@{/ajoutCoach}">
-                                    <span class="sidebar-mini"> N </span>
-                                    <span class="sidebar-normal"> NOUVEAU </span>
+                            <li class="nav-item ">
+                                <a class="nav-link" th:href="@{/statistiqueCoach}">
+                                    <span class="sidebar-mini"> L </span>
+                                    <span class="sidebar-normal"> LISTER </span>
                                 </a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" th:href="@{/statistiqueCoach}">
+                                <a class="nav-link" th:href="@{/ajoutCoach}" sec:authorize="hasRole('ROLE_SUPERADMIN')">
                                     <span class="sidebar-mini"> N </span>
-                                    <span class="sidebar-normal">LISTER
-                                        </span>
+                                    <span class="sidebar-normal"> NOUVEAU </span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
 
-
-                <li class="nav-item" style="margin-bottom: 300px">
-                        <a class="nav-link" data-toggle="collapse"></a>
+                <li class="nav-item active bas" >
+                    <a class="nav-link">
+                        <i class="fas fa-user-tie"></i>
+                        Coach <span sec:authentication="name"/>
+                    </a>
                 </li>
             </ul>
         </div>
@@ -213,7 +218,7 @@
                                 <div class="card-icon">
                                     <i class="fas fa-user m-1" style="font-size: x-large"></i>
                                 </div>
-                                <h4 class="card-title">Liste de toutes les clientes</h4>
+                                <h4 class="card-title">Liste des clientes Gold</h4>
                             </div>
                             <div class="card-body">
                                 <div class="toolbar">
@@ -234,7 +239,6 @@
                                             <th>Email</th>
                                             <th>Sexe</th>
                                             <th>Coach</th>
-                                            <th>Formule</th>
                                             <th class="text-right">Actions</th>
                                         </tr>
                                         </thead>
@@ -251,12 +255,11 @@
                                             <th>Email</th>
                                             <th>Sexe</th>
                                             <th>Coach</th>
-                                            <th>Formule</th>
                                             <th class="text-right">Actions</th>
                                         </tr>
                                         </tfoot>
                                         <tbody>
-                                        <tr th:each="c:${tabClient}">
+                                        <tr th:each="c:${clientGol}">
                                             <td><span th:text="${c.codeClient}"></span></td>
                                             <td><span th:text="${c.prenomClient}"></span></td>
                                             <td><span th:text="${c.nomClient}"></span></td>
@@ -267,8 +270,7 @@
                                             <td><span th:text="${c.numClient}"></span></td>
                                             <td><span th:text="${c.emailClient}"></span></td>
                                             <td><span th:text="${c.sexe}"></span></td>
-                                            <td><span th:text="${c.coach.nomCoach}"></span></td>
-                                            <td><span th:text="${c.formule.class.simpleName}" class="badge filter badge-warning"></span></td>
+                                            <td><span th:text="${c.coach.getNomCoach()}"></span></td>
                                             <td class="text-right&">
                                                 <a th:href="@{'/consulterClient?prenomClient='+${c.prenomClient}}" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">favorite</i></a>
                                                 <a th:href="@{'/editClient?codeClient='+${c.codeClient}}" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>

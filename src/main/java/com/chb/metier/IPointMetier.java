@@ -15,5 +15,7 @@ public interface IPointMetier {
     public List<Point> listPoints(String nomCoach);
     public List<Client> ClienteFormule(Long codeFormule, String codeCoach);
     public List<Client> findClFormCoach(Long codeFormule, String codeCoach);
+//    public List<Client> findAllClFormCoach(Long codeFormule);
     public Point consulterPoint(Long codePoint);
+    public List<Client> findAllClForm(Long codeFormule);
 }

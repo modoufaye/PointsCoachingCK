@@ -74,12 +74,35 @@ public class PointMetierImpl implements IPointMetier{
             return clientRepository.findClFormCoach(codeFormule, codeCoach);
     }
 
+/*
+    @Override
+    public List<Client> findAllClFormCoach(Long codeFormule) {
+        if(codeFormule == 1)
+            return clientRepository.findAllClienteFormule(codeFormule);
+        else if(codeFormule == 2)
+            return clientRepository.findAllClienteFormule(codeFormule);
+        else
+            return clientRepository.findAllClienteFormule(codeFormule);
+    }
+*/
+
     @Override
     public Point consulterPoint(Long codePoint) {
         Point point = pointRepository.consulterPointCode(codePoint);
         if(codePoint==null)
             throw new RuntimeException("Le point est introuvable");
         return point;
+    }
+
+    @Override
+    public List<Client> findAllClForm(Long codeFormule) {
+        if(codeFormule == 1)
+            return clientRepository.findAllClFormDao(codeFormule);
+        else if(codeFormule == 2)
+            return clientRepository.findAllClFormDao(codeFormule);
+        else
+            return clientRepository.findAllClFormDao(codeFormule);
+
     }
 
 }
