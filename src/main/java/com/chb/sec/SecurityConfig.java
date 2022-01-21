@@ -33,7 +33,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //        la page de connexion personnalisée
         http.formLogin().loginPage("/login");
-        http.csrf().disable();
         http.authorizeRequests().antMatchers("/ajoutClient","/editClient","/saveClient","/updateClient","/logout","/login","/").permitAll();
         http.authorizeRequests().antMatchers("/tabClient","/statistiqueBasic","/statistiqueSilver","/statistiqueGold").hasRole("SUPERADMIN");
         http.authorizeRequests().antMatchers("/listBasic","/listSilver","/listGold","/listClientsDuCoach","/deleteClient").hasRole("USER");

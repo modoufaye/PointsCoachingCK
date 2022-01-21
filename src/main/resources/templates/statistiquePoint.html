@@ -237,6 +237,7 @@
                                             <th>Stress</th>
                                             <th>Date point</th>
                                             <th>Nom de la cliente</th>
+                                            <th>Coach</th>
 <!--                                            <th class="text-right">Actions</th>-->
                                         </tr>
                                         </thead>
@@ -253,6 +254,7 @@
                                             <th>Stress</th>
                                             <th>Date point</th>
                                             <th>Nom de la cliente</th>
+                                            <th>Coach</th>
 <!--                                            <th class="text-right">Actions</th>-->
                                         </tr>
                                         </tfoot>
@@ -269,6 +271,7 @@
                                             <td><span th:text="${p.stress}"></span></td>
                                             <td><span th:text="${p.getDatePoint()}"></span></td>
                                             <td><span th:text="${p.client.getPrenomClient()+' '+p.client.getNomClient()}"></span></td>
+                                            <td><span th:text="${p.coach.getNomCoach()}"></span></td>
                                             <!--<td class="text-right&">
                                                 <a th:href="@{'/consulterClient?prenomClient='+${p.getClient().getPrenomClient()}}" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">favorite</i></a>
                                                 <a th:href="@{'/editClient?codeClient='+${p.getClient().getCodeClient()}}" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>

@@ -268,43 +268,74 @@ public class PointController extends HttpServlet{
     // Liste des etudiants Basic d'un coach
     @RequestMapping(value = "/listBasic")
     public String tabBasic(Model model, HttpServletRequest request) {
-        String username = request.getUserPrincipal().getName();
+        try{
+            String username = request.getUserPrincipal().getName();
             List<Client> tabClient = pointMetier.findClFormCoach(1L, username);
             model.addAttribute("listBas", tabClient);
-            return "listBasic";
+        }
+        catch (Exception e){
+            model.addAttribute("exception", e);
+        }
+        return "listBasic";
     }
     // Liste de tous les etudiants Basic
     @RequestMapping(value = "/statistiqueBasic")
     public String statBasic(Model model, HttpServletRequest request) {
+        try{
             List<Client> tabClient = pointMetier.findAllClForm(1L);
             model.addAttribute("clientBas", tabClient);
-            return "statistiqueBasic";
+
+        }
+        catch (Exception e){
+            model.addAttribute("exception", e);
+        }
+        return "statistiqueBasic";
     }
 
     @RequestMapping(value = "/listSilver")
     public String tabSilver(Model model, HttpServletRequest request) {
-        String username = request.getUserPrincipal().getName();
-        List<Client> tabClient = pointMetier.findClFormCoach(2L, username);
-        model.addAttribute("listSil", tabClient);
+        try {
+            String username = request.getUserPrincipal().getName();
+            List<Client> tabClient = pointMetier.findClFormCoach(2L, username);
+            model.addAttribute("listSil", tabClient);
+        }
+        catch(Exception e){
+            model.addAttribute("exception", e);
+        }
         return "listSilver";
     }
     @RequestMapping(value = "/statistiqueSilver")
     public String statSilver(Model model, HttpServletRequest request) {
-        List<Client> tabClient = pointMetier.findAllClForm(2L);
-        model.addAttribute("clientSil", tabClient);
+        try{
+            List<Client> tabClient = pointMetier.findAllClForm(2L);
+            model.addAttribute("clientSil", tabClient);
+        }
+        catch (Exception e){
+            model.addAttribute("exception", e);
+        }
         return "statistiqueSilver";
     }
     @RequestMapping(value = "/listGold")
     public String tabGold(Model model, HttpServletRequest request) {
-        String username = request.getUserPrincipal().getName();
-        List<Client> tabClient = pointMetier.findClFormCoach(3L, username);
-        model.addAttribute("listGol", tabClient);
+        try{
+            String username = request.getUserPrincipal().getName();
+            List<Client> tabClient = pointMetier.findClFormCoach(3L, username);
+            model.addAttribute("listGol", tabClient);
+        }
+        catch (Exception e){
+            model.addAttribute("exception", e);
+        }
         return "listGold";
     }
     @RequestMapping(value = "/statistiqueGold")
     public String statGold(Model model, HttpServletRequest request) {
-        List<Client> tabClient = pointMetier.findAllClForm(3L);
-        model.addAttribute("clientGol", tabClient);
+        try{
+            List<Client> tabClient = pointMetier.findAllClForm(3L);
+            model.addAttribute("clientGol", tabClient);
+        }
+        catch (Exception e){
+            model.addAttribute("exception", e);
+        }
         return "statistiqueGold";
     }
 }
