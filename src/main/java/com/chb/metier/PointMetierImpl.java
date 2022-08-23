@@ -17,12 +17,10 @@ import java.util.List;
 public class PointMetierImpl implements IPointMetier{
     @Autowired
     private ClientRepository clientRepository;
-
     @Autowired
     private CoachRepository coachRepository;
     @Autowired
     private PointRepository pointRepository;
-
     @Override
     public Client consulterClient(String prenomClient) {
         Client cl = clientRepository.consulterClientDao(prenomClient);
@@ -38,6 +36,7 @@ public class PointMetierImpl implements IPointMetier{
 
     @Override
     public List<Client> listClientDuCoach(String codeCoach) {
+
         return clientRepository.listClientsDuCoach(codeCoach);
     }
 

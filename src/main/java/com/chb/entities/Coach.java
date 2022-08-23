@@ -13,23 +13,6 @@ public class Coach implements Serializable {
     private String nomCoach;
     @OneToMany(mappedBy = "coach", fetch = FetchType.LAZY)
     private Collection<Client> clients;
-
-    public Collection<Client> getClients() {
-        return clients;
-    }
-
-    public void setClients(Collection<Client> clients) {
-        this.clients = clients;
-    }
-
-    public Collection<Point> getPoints() {
-        return points;
-    }
-
-    public void setPoints(Collection<Point> points) {
-        this.points = points;
-    }
-
     @OneToMany(mappedBy = "coach", fetch = FetchType.LAZY)
     private Collection<Point> points;
 
@@ -48,7 +31,6 @@ public class Coach implements Serializable {
         this.nomCoach = nomCoach;
     }
 
-
     public String getCodeCoach() {
         return codeCoach;
     }
@@ -63,5 +45,21 @@ public class Coach implements Serializable {
 
     public void setNomCoach(String nomCoach) {
         this.nomCoach = nomCoach;
+    }
+
+    public Collection<Client> getClients() {
+        return clients;
+    }
+
+    public void setClients(Collection<Client> clients) {
+        this.clients = clients;
+    }
+
+    public Collection<Point> getPoints() {
+        return points;
+    }
+
+    public void setPoints(Collection<Point> points) {
+        this.points = points;
     }
 }

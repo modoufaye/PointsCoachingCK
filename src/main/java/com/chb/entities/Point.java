@@ -16,6 +16,7 @@ public class Point implements Serializable {
     private Date datePoint;
     private double poidsPerdus;
     private int semaine;
+
     private Boolean routineAlimentaire;
     private Boolean mindfulEating;
     private Boolean mindfulEatingAffecte;
@@ -28,6 +29,7 @@ public class Point implements Serializable {
     private Boolean sommeil;
     private Boolean sommeilAffecte;
     private String infosSupplementaire;
+
     @ManyToOne
     @JoinColumn(name = "CODE_COACH")
     private Coach coach;

@@ -11,6 +11,5 @@ public class Gold extends Formule{
     public Gold() {
         super();
     }
-
 }
 

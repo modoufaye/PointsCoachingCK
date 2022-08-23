@@ -21,10 +21,10 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
     @Query("Select c from Client c where c.formule.codeFormule =:x")
     public List<Client> findAllClienteFormule(@Param("x") Long codeFormule);
-
+    // Idem avec findClienteFormule
     @Query("Select c from Client c where c.formule.codeFormule =:x and c.coach.codeCoach =:y")
     public List<Client> findClFormCoach(@Param("x") Long codeFormule, @Param("y") String codeCoach);
-
+    // Idem avec findAllClienteFormule
     @Query("Select c from Client c where c.formule.codeFormule =:x")
     public List<Client> findAllClFormDao(@Param("x") Long codeFormule);
 
