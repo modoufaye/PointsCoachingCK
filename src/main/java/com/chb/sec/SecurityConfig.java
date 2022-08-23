@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //        la page de connexion personnalisée
         http.formLogin().loginPage("/login");
-        http.authorizeRequests().antMatchers("/ajoutClient","/editClient","/saveClient","/updateClient","/logout","/login","../../assets/**").permitAll();
+        http.authorizeRequests().antMatchers("/ajoutClient","/editClient","/saveClient","/updateClient","/logout","/login","../../assets/**","https://**").permitAll();
         http.authorizeRequests().antMatchers("/tabClient","/statistiqueBasic","/statistiqueSilver","/statistiqueGold").hasRole("SUPERADMIN");
         http.authorizeRequests().antMatchers("/listBasic","/listSilver","/listGold","/listClientsDuCoach","/deleteClient").hasRole("USER");
         http.exceptionHandling().accessDeniedPage("/403");
